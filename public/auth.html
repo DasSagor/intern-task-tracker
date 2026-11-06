@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Intern Task Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <div class="auth-logo-box"><span>YS</span></div>
+      <h2>Intern Task Tracker</h2>
+      <p>YSSE Internship Program</p>
+    </div>
+
+    <div class="auth-tabs" id="intern-tabs">
+      <div class="auth-tab active" onclick="switchTab('login')">Sign In</div>
+      <div class="auth-tab" onclick="switchTab('register')">Create Account</div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-form active" id="form-login">
+      
+      <div class="form-group">
+        <label>Select Role <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-user-tag input-icon"></i>
+          <select id="login-role" style="padding-left:38px; width:100%; height:44px; border:1.5px solid var(--border); border-radius:8px; outline:none; font-family:'Inter',sans-serif;">
+            <option value="intern">Intern</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <div class="input-wrap">
+          <i class="fa fa-envelope input-icon"></i>
+          <input type="email" id="login-email" placeholder="your@email.com">
+        </div>
+        <div class="error-msg" id="err-login-email">Enter your email</div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <i class="fa fa-lock input-icon"></i>
+          <input type="password" id="login-password" placeholder="••••••••">
+        </div>
+        <div class="error-msg" id="err-login-password">Enter your password</div>
+      </div>
+      <div class="error-msg" id="err-login-general" style="display:block; margin-bottom:14px; font-size:13px"></div>
+      <button class="btn btn-primary btn-full" onclick="doLogin()">
+        <i class="fa fa-sign-in-alt"></i> Sign In
+      </button>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-form" id="form-register">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name <span class="req">*</span></label>
+          <div class="input-wrap">
+            <i class="fa fa-user input-icon"></i>
+            <input type="text" id="reg-name" placeholder="Your full name">
+          </div>
+          <div class="error-msg" id="err-reg-name">Name is required</div>
+        </div>
+        <div class="form-group">
+          <label>Intern ID <span class="req">*</span></label>
+          <div class="input-wrap">
+            <i class="fa fa-id-badge input-icon"></i>
+            <input type="text" id="reg-internId" placeholder="B21XXXXXX">
+          </div>
+          <div class="error-msg" id="err-reg-internId">Must start with B21</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-envelope input-icon"></i>
+          <input type="email" id="reg-email" placeholder="your@email.com">
+        </div>
+        <div class="error-msg" id="err-reg-email">Valid email required</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Password <span class="req">*</span></label>
+          <div class="input-wrap">
+            <i class="fa fa-lock input-icon"></i>
+            <input type="password" id="reg-password" placeholder="Min 6 chars">
+          </div>
+          <div class="error-msg" id="err-reg-password">Min 6 characters</div>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password <span class="req">*</span></label>
+          <div class="input-wrap">
+            <i class="fa fa-lock input-icon"></i>
+            <input type="password" id="reg-confirm" placeholder="Repeat password">
+          </div>
+          <div class="error-msg" id="err-reg-confirm">Passwords don't match</div>
+        </div>
+      </div>
+      <div class="error-msg" id="err-reg-general" style="display:block; margin-bottom:14px; font-size:13px"></div>
+      <button class="btn btn-accent btn-full" onclick="doRegister()">
+        <i class="fa fa-user-plus"></i> Create Account
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(function (t, i) {
+    t.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'register' && i === 1));
+  });
+  document.getElementById('form-login').classList.toggle('active', tab === 'login');
+  document.getElementById('form-register').classList.toggle('active', tab === 'register');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /interns/{uid} {
+      allow read:   if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid == uid;
+      allow update: if request.auth != null && (request.auth.uid == uid || request.auth.token.email == 'admin@intern.com');
+      allow delete: if false;
+    }
+
+    match /submissions/{docId} {
+      allow read:   if true;
+      allow create: if request.auth != null && request.resource.data.status == 'pending';
+      allow update, delete: if request.auth != null && request.auth.token.email == 'admin@intern.com';
+    }
+  }
+}

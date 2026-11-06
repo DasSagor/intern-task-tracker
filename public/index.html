@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Task — Intern Task Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo">YS</div>
+    <span class="nav-title">Intern Task Tracker</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active"><i class="fa fa-upload"></i> Submit</a>
+    <a href="search.html"><i class="fa fa-search"></i> Track</a>
+    <a href="#" onclick="doLogout()" class="btn-nav"><i class="fa fa-sign-out-alt"></i> Logout</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Submit Your Task</h1>
+  <p>Fill in the details below to submit your internship task</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Task Submission Form</h2>
+      <p>All fields marked with * are required</p>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Intern ID <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-id-badge input-icon"></i>
+          <input type="text" id="internId" placeholder="B21XXXXXX">
+        </div>
+        <div class="error-msg" id="err-internId">Intern ID required</div>
+      </div>
+      <div class="form-group">
+        <label>Full Name <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-user input-icon"></i>
+          <input type="text" id="name" placeholder="Your full name">
+        </div>
+        <div class="error-msg" id="err-name">Name required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email Address <span class="req">*</span></label>
+      <div class="input-wrap">
+        <i class="fa fa-envelope input-icon"></i>
+        <input type="email" id="email" placeholder="your@email.com">
+      </div>
+      <div class="error-msg" id="err-email">Email required</div>
+    </div>
+
+    <div class="form-group">
+      <label>Task Title <span class="req">*</span></label>
+      <div class="input-wrap">
+        <i class="fa fa-tasks input-icon"></i>
+        <input type="text" id="taskTitle" placeholder="e.g. Firebase Task Tracker App">
+      </div>
+      <div class="error-msg" id="err-taskTitle">Task title required</div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Task Category <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-list input-icon"></i>
+          <select id="taskCategory" style="padding-left:38px; width:100%; height:44px; border:1.5px solid var(--border); border-radius:8px; outline:none; font-family:'Inter',sans-serif;">
+            <option value="">Select Category</option>
+            <option value="Web Development">Web Development</option>
+            <option value="App Development">App Development</option>
+            <option value="UI/UX Design">UI/UX Design</option>
+            <option value="Content Writing">Content Writing</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Data Entry">Data Entry</option>
+          </select>
+        </div>
+        <div class="error-msg" id="err-taskCategory">Category required</div>
+      </div>
+      <div class="form-group">
+        <label>Submission Round <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-layer-group input-icon"></i>
+          <select id="submissionRound" style="padding-left:38px; width:100%; height:44px; border:1.5px solid var(--border); border-radius:8px; outline:none; font-family:'Inter',sans-serif;">
+            <option value="">Select Round</option>
+            <option value="Week 1">Week 1</option>
+            <option value="Week 2">Week 2</option>
+            <option value="Week 3">Week 3</option>
+            <option value="Week 4">Week 4</option>
+            <option value="Final Task">Final Task</option>
+          </select>
+        </div>
+        <div class="error-msg" id="err-submissionRound">Round required</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>GitHub / Live Link</label>
+        <div class="input-wrap">
+          <i class="fa fa-link input-icon"></i>
+          <input type="url" id="githubLink" placeholder="https://github.com/... (Optional)">
+        </div>
+        <div class="error-msg" id="err-githubLink"></div>
+      </div>
+      <div class="form-group">
+        <label>Submission Date <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-calendar input-icon"></i>
+          <input type="date" id="submissionDate">
+        </div>
+        <div class="error-msg" id="err-submissionDate">Date required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Brief Description <span class="req">*</span></label>
+      <div class="input-wrap">
+        <i class="fa fa-align-left input-icon" style="top:16px;transform:none"></i>
+        <textarea id="description" placeholder="Briefly describe what you built and the technologies used..."></textarea>
+      </div>
+      <div class="error-msg" id="err-description">Description required</div>
+    </div>
+
+    <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:20px">
+      <button class="btn btn-outline" onclick="resetForm()">
+        <i class="fa fa-redo"></i> Reset
+      </button>
+      <button class="btn btn-primary" id="btn-submit" onclick="submitTask()">
+        <i class="fa fa-paper-plane"></i> Submit Task
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script type="module" src="submit.js"></script>
+</body>
+</html>

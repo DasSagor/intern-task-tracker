@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Submission — Intern Task Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo">YS</div>
+    <span class="nav-title">Intern Task Tracker</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa fa-upload"></i> Submit</a>
+    <a href="search.html" class="active"><i class="fa fa-search"></i> Track</a>
+    <a href="#" onclick="doLogout()" class="btn-nav"><i class="fa fa-sign-out-alt"></i> Logout</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Track Your Submission</h1>
+  <p>Enter your name and Intern ID / email to check status</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Search Submission</h2>
+      <p>Name is required — provide either Intern ID or Email to narrow the search</p>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name <span class="req">*</span></label>
+        <div class="input-wrap">
+          <i class="fa fa-user input-icon"></i>
+          <input type="text" id="searchName" placeholder="Your full name">
+        </div>
+        <div class="error-msg" id="err-searchName">Name is required</div>
+      </div>
+      <div class="form-group">
+        <label>Intern ID</label>
+        <div class="input-wrap">
+          <i class="fa fa-id-badge input-icon"></i>
+          <input type="text" id="searchId" placeholder="B21XXXXXX">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <div class="input-wrap">
+        <i class="fa fa-envelope input-icon"></i>
+        <input type="email" id="searchEmail" placeholder="your@email.com">
+      </div>
+    </div>
+
+    <div class="error-msg" id="err-search-general" style="display:block; margin-bottom:14px; font-size:13px"></div>
+
+    <button class="btn btn-primary" onclick="searchIntern()">
+      <i class="fa fa-search"></i> Search
+    </button>
+
+    <div id="result-area" style="margin-top:24px"></div>
+  </div>
+</div>
+
+<script type="module" src="search.js"></script>
+</body>
+</html>
